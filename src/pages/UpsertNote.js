@@ -1,6 +1,18 @@
 import React, { Component } from "react";
-import { FormControl, TextField, Button } from "@material-ui/core";
+import { FormControl, TextField, Button, Paper } from "@material-ui/core";
 import { withRouter } from "react-router";
+
+const styles = {
+  form: {
+    marginTop: "2rem",
+    marginBottom: "1rem",
+    padding: "1rem",
+  },
+  paper: {
+    marginBottom: "1rem",
+  },
+};
+
 
 class AddNote extends Component {
   constructor(props) {
@@ -35,9 +47,24 @@ class AddNote extends Component {
     this.props.history.push("/");
   };
 
+  componentDidMount() {
+    const { state } = this.props.location;
+      if (state) {
+        const { id, title, text } = state;
+        this.setState({
+          id,
+          title,
+          text,
+        });
+      }
+    }
+    
+
   render() {
+    console.log(this.props);
     return (
-      <form>
+      <form style={styles.form}>
+        <Paper elevation={3} style={styles.paper}>
         <FormControl fullWidth>
           <TextField
             label="Title"
@@ -46,16 +73,19 @@ class AddNote extends Component {
             onChange={this.updateTitle}
           />
         </FormControl>
-        <FormControl fullWidth>
-          <TextField
-            label="Text"
-            multiline
-            rows={4}
-            variant="outlined"
-            value={this.state.text}
-            onChange={this.updateText}
-          />
-        </FormControl>
+        </Paper>
+        <Paper elevation={3} style={styles.paper}>
+          <FormControl fullWidth>
+            <TextField
+              label="Text"
+              multiline
+              rows={6}
+              variant="outlined"
+              value={this.state.text}
+              onChange={this.updateText}
+            />
+          </FormControl>
+        </Paper>
         <div>
           <Button type="button" color="secondary" onClick={this.handleCancel}>
             Cancel

@@ -17,7 +17,7 @@ const styles = {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state =  {
+    this.state = {
       notes: [
         {
           id: "5c83c052-60da-425f-a302-9d4735a9d6ae",
@@ -54,6 +54,14 @@ class App extends Component {
     });
   }
 
+  editNote = (note) => {
+    this.setState((state) => {
+      return {
+        notes: state.notes.map(n => n.id === note.id ? note : n),
+      };
+    });
+  };
+
   render() {
     const { notes } = this.state;
     return (
@@ -65,6 +73,10 @@ class App extends Component {
           <Route path="/add">
             <UpsertNote upsertNote={this.addNote} />
           </Route>
+          <Route path="/edit">
+            <UpsertNote upsertNote={this.editNote} />
+          </Route>
+
         </Routes>
       </Container>
     );

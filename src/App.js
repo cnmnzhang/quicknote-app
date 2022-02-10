@@ -47,17 +47,10 @@ class App extends Component {
     const { notes } = this.state;
     return (
       <Container>
-        <List>
-          {notes.map((note, index) => {
-            return <Note note={note} key={index} deleteNote={this.deleteNote} />;
-          })}
-        </List>
-        <Fab aria-label={"Add"} className={this.props.classes.fab}>
-          <Add />
-        </Fab>
+        <DisplayNotes notes={notes} deleteNote={this.deleteNote}/>
       </Container>
     )
   }
 }
 
-export default withStyles(styles)(App);
+export default App;

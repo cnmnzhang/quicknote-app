@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Container, List, Fab, withStyles } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
-import Note from "./components/Note";
+import DisplayNotes from "./pages/DisplayNotes";
 import AddNote from "./pages/AddNote";
+import { Route, Routes } from "react-router";
 
 const styles = {
   fab: {
@@ -48,11 +49,18 @@ class App extends Component {
     const { notes } = this.state;
     return (
       <Container>
-        <DisplayNotes notes={notes} deleteNote={this.deleteNote}/>
-        <AddNote />
+        <Routes>
+          <Route exact path="/">
+            <DisplayNotes notes={notes} deleteNote={this.deleteNote} />
+          </Route>
+          <Route path="/add">
+            <AddNote />
+          </Route>
+        </Routes>
       </Container>
-    )
+    );
   }
+
 }
 
 export default App;

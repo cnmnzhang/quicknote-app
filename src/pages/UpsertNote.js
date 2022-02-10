@@ -26,6 +26,8 @@ class AddNote extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
+    this.props.upsertNote(this.state);
+    this.props.history.push("/")
   };
 
   handleCancel = (event) => {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, List, Fab, withStyles } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import Note from "./components/Note";
+import AddNote from "./pages/AddNote";
 
 const styles = {
   fab: {
@@ -48,6 +49,7 @@ class App extends Component {
     return (
       <Container>
         <DisplayNotes notes={notes} deleteNote={this.deleteNote}/>
+        <AddNote />
       </Container>
     )
   }
